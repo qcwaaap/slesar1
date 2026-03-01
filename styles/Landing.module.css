@@ -1,0 +1,418 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff9f0;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+/* ШАПКА */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #ffffff;
+}
+
+.logoArea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+}
+
+.phone {
+  font-weight: 700;
+  font-size: 18px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+
+.callbackButton {
+  width: 380px;
+  height: 75px;
+  background-color: #c17c5a;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 28px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.callbackButton:hover {
+  background-color: #a56648;
+}
+
+/* БЛОК С НАЗВАНИЕМ */
+.heroSection {
+  height: 425px;
+  width: 100%;
+  position: relative;
+  background-color: #fff9f0;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 40px;
+}
+
+.heroLeft {
+  flex: 1;
+}
+
+.heroTitle {
+  font-weight: 700;
+  font-size: 40px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-weight: 700;
+  font-size: 28px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefitsList li {
+  font-weight: 700;
+  font-size: 20px;
+  color: #7f7f7f;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.benefitsList li::before {
+  content: "•";
+  color: #c17c5a;
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+
+.heroRight {
+  flex-shrink: 0;
+}
+
+.photoFrame {
+  width: 520px;
+  height: 315px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #e0e0e0;
+}
+
+.masterPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* БЛОК АКЦИЙ */
+.discountSection {
+  height: 380px;
+  width: 100%;
+  position: relative;
+  background-color: #c17c5a; /* запасной цвет, если фото не загрузится */
+  overflow: hidden;
+}
+
+.discountBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.discountContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 40px;
+  color: #ffffff;
+}
+
+.discountTitle {
+  font-weight: 700;
+  font-size: 36px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.serviceItem {
+  font-weight: 400;
+  font-size: 22px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+.getDiscountButton {
+  width: 200px;
+  height: 50px;
+  background-color: #c17c5a;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.getDiscountButton:hover {
+  background-color: #a56648;
+}
+
+/* БЛОК НАШИ УСЛУГИ (КАРТОЧКИ) */
+.servicesFullSection {
+  background-color: #fff9f0;
+  padding: 60px 40px;
+}
+
+.servicesFullTitle {
+  font-weight: 700;
+  font-size: 40px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  margin: 0 0 50px 0;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.serviceCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cardTitle {
+  font-weight: 700;
+  font-size: 22px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  margin: 0 0 15px 0;
+}
+
+.cardDescription {
+  font-weight: 400;
+  font-size: 16px;
+  color: #7f7f7f;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* МОДАЛЬНОЕ ОКНО */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #7f7f7f;
+}
+
+.closeButton:hover {
+  color: #000000;
+}
+
+.modalTitle {
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  margin: 0 0 25px 0;
+  text-align: center;
+}
+
+.callbackForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formInput {
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #c17c5a;
+}
+
+.formSubmitButton {
+  background-color: #c17c5a;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.formSubmitButton:hover {
+  background-color: #a56648;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 1024px) {
+  .heroContent {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .heroRight {
+    margin-top: 20px;
+  }
+
+  .photoFrame {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .callbackButton {
+    width: 280px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .callbackButton {
+    width: 100%;
+    max-width: 380px;
+    font-size: 24px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .heroSubtitle {
+    font-size: 24px;
+  }
+
+  .benefitsList li {
+    font-size: 18px;
+  }
+
+  .discountTitle {
+    font-size: 28px;
+  }
+
+  .serviceItem {
+    font-size: 18px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
