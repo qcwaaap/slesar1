@@ -413,3 +413,86 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Стили для расширенной формы */
+.modalSubtitle {
+  text-align: center;
+  color: #7f7f7f;
+  font-size: 16px;
+  margin: -10px 0 20px 0;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  color: #4A5B6E;
+  margin-bottom: 5px;
+}
+
+.required {
+  color: #c17c5a;
+  font-size: 16px;
+  margin-left: 2px;
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.formTextarea:focus {
+  outline: none;
+  border-color: #c17c5a;
+}
+
+.formTextarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.successState {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.successMessage {
+  color: #4CAF50;
+  font-size: 16px;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #f44336;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #ffcdd2;
+  font-size: 14px;
+}
+
+.loadingIndicator {
+  text-align: center;
+  color: #7f7f7f;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.formSubmitButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
