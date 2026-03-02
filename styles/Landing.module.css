@@ -1,18 +1,18 @@
 .container {
-  max-width: 1440px;
+  max-width: 100%;
+  min-width: 320px;
   margin: 0 auto;
   background-color: #fff9f0;
   font-family: 'Inter', sans-serif;
   position: relative;
 }
 
-/* ШАПКА */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: #ffffff;
+  background-color: #fff9f0;
 }
 
 .logoArea {
@@ -54,12 +54,11 @@
   background-color: #a56648;
 }
 
-/* БЛОК С НАЗВАНИЕМ */
 .heroSection {
   height: 425px;
   width: 100%;
   position: relative;
-  background-color: #fff9f0;
+   background-color: #ffffff;
   overflow: hidden;
 }
 
@@ -146,12 +145,11 @@
   object-fit: cover;
 }
 
-/* БЛОК АКЦИЙ */
 .discountSection {
   height: 380px;
   width: 100%;
   position: relative;
-  background-color: #c17c5a; /* запасной цвет, если фото не загрузится */
+  background-color: #c17c5a; 
   overflow: hidden;
 }
 
@@ -219,7 +217,7 @@
   background-color: #a56648;
 }
 
-/* БЛОК НАШИ УСЛУГИ (КАРТОЧКИ) */
+
 .servicesFullSection {
   background-color: #fff9f0;
   padding: 60px 40px;
@@ -272,7 +270,7 @@
   line-height: 1.5;
 }
 
-/* МОДАЛЬНОЕ ОКНО */
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -357,7 +355,6 @@
   background-color: #a56648;
 }
 
-/* АДАПТИВНОСТЬ */
 @media (max-width: 1024px) {
   .heroContent {
     flex-direction: column;
