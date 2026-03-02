@@ -7,7 +7,6 @@ import styles from "../styles/Landing.module.css";
 const Landing = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  // Данные для карточек услуг
   const servicesData = [
     {
       title: "Компьютерная диагностика",
@@ -41,7 +40,6 @@ const Landing = () => {
 
   return (
     <div className={styles.container}>
-      {/* БЛОК ШАПКИ */}
       <header className={styles.header}>
         <div className={styles.logoArea}>
           <div className={styles.logo}>КОММОН РЕЙЛ СПБ СЕРВИС</div>
@@ -55,12 +53,10 @@ const Landing = () => {
         </button>
       </header>
 
-      {/* БЛОК С НАЗВАНИЕМ И ФОТО */}
       <section className={styles.heroSection}>
-        {/* Фоновое изображение (полупрозрачное) */}
         <div className={styles.heroBackground}>
           <Image
-            src="/images/hero-bg.png" // ⬅️ ЗАМЕНИТЕ НА СВОЕ ФОТО
+            src="/images/hero-bg.png" 
             alt="фон"
             fill
             style={{ objectFit: "cover", opacity: 0.15 }}
@@ -87,7 +83,7 @@ const Landing = () => {
           <div className={styles.heroRight}>
             <div className={styles.photoFrame}>
               <Image
-                src="/images/master-photo.jpg" // ⬅️ ЗАМЕНИТЕ НА ФОТО МАСТЕРА
+                src="/images/master-photo.jpg"
                 alt="Мастер за работой"
                 width={520}
                 height={315}
@@ -98,12 +94,10 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* БЛОК АКЦИЙ */}
       <section className={styles.discountSection}>
-        {/* Фоновое изображение для блока акций */}
         <div className={styles.discountBackground}>
           <Image
-            src="/images/discount-bg.png" // ⬅️ ЗАМЕНИТЕ НА ФОТО ДЛЯ БЛОКА АКЦИЙ
+            src="/images/discount-bg.png" 
             alt="фон акций"
             fill
             style={{ objectFit: "cover", opacity: 100 }}
@@ -140,7 +134,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* БЛОК НАШИ УСЛУГИ (КАРТОЧКИ) */}
       <section className={styles.servicesFullSection}>
         <h2 className={styles.servicesFullTitle}>НАШИ УСЛУГИ</h2>
 
@@ -154,7 +147,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* МОДАЛЬНОЕ ОКНО С ФОРМОЙ ЗВОНКА */}
       {isFormOpen && (
         <div className={styles.modalOverlay} onClick={() => setIsFormOpen(false)}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
