@@ -19,37 +19,6 @@ const Landing = () => {
   const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success, error
   const [formError, setFormError] = useState('');
 
-  const servicesData = [
-    {
-      title: "Компьютерная диагностика",
-      description:
-        "Чтение ошибок, анализ параметров работы, проверка датчиков и электроцепей",
-    },
-    {
-      title: "Ремонт форсунок Common Rail",
-      description:
-        "Профессиональный ремонт форсунок Denso, Bosch, Delphi, Siemens",
-    },
-    {
-      title: "Ремонт ТНВД",
-      description:
-        "Диагностика и ремонт топливных насосов высокого давления любой сложности",
-    },
-    {
-      title: "Замена свечей накала",
-      description:
-        "Аккуратное извлечение и замена свечей накала без повреждения ГБЦ",
-    },
-    {
-      title: "Чистка впускных каналов",
-      description: "Удаление отложений скорлупой грецкого ореха",
-    },
-    {
-      title: "Замена топливного фильтра",
-      description: "Замена фильтров тонкой и грубой очистки топлива",
-    },
-  ];
-
   // Валидация формы
   const validateForm = () => {
     if (!formData.name.trim()) {
@@ -83,56 +52,61 @@ const Landing = () => {
   };
 
   // Отправка формы
-  const handleSubmitForm = async (e) => {
-    e.preventDefault();
+// Отправка формы
+const handleSubmitForm = async (e) => {
+  e.preventDefault();
+  
+  if (!validateForm()) return;
+
+  setFormStatus('loading');
+  setFormError('');
+
+  try {
+    console.log('📤 Отправка данных:', formData);
+
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    // Логируем статус ответа
+    console.log('📥 Статус ответа:', response.status);
     
-    if (!validateForm()) return;
+    const data = await response.json();
+    console.log('📦 Данные ответа:', data);
 
-    setFormStatus('loading');
-    setFormError('');
-
-    try {
-      console.log('📤 Отправка данных:', formData);
-
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Ошибка при отправке');
-      }
-
-      console.log('✅ Успешно отправлено:', data);
-      
-      // Очищаем форму
-      setFormData({
-        name: '',
-        phone: '',
-        carBrand: '',
-        carYear: '',
-        problem: ''
-      });
-      setFormStatus('success');
-
-      // Через 3 секунды закрываем модалку
-      setTimeout(() => {
-        setFormStatus('idle');
-        setIsFormOpen(false);
-      }, 3000);
-
-    } catch (error) {
-      console.error('❌ Ошибка:', error);
-      setFormStatus('error');
-      setFormError(error.message || 'Не удалось отправить заявку');
+    if (!response.ok) {
+      // Показываем конкретную ошибку от сервера
+      throw new Error(data.error || `Ошибка ${response.status}: ${response.statusText}`);
     }
-  };
 
+    console.log('✅ Успешно отправлено:', data);
+    
+    // Очищаем форму
+    setFormData({
+      name: '',
+      phone: '',
+      carBrand: '',
+      carYear: '',
+      problem: ''
+    });
+    setFormStatus('success');
+
+    // Через 3 секунды закрываем модалку
+    setTimeout(() => {
+      setFormStatus('idle');
+      setIsFormOpen(false);
+    }, 3000);
+
+  } catch (error) {
+    console.error('❌ Детальная ошибка:', error);
+    setFormStatus('error');
+    setFormError(error.message || 'Не удалось отправить заявку');
+  }
+};
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -251,19 +225,120 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className={styles.servicesFullSection}>
-        <h2 className={styles.servicesFullTitle}>НАШИ УСЛУГИ</h2>
+{/* БЛОК НАШИ УСЛУГИ (КОМПАКТНЫЕ КАРТОЧКИ) */}
+<section className={styles.servicesFullSection}>
+  <h2 className={styles.servicesFullTitle}>НАШИ УСЛУГИ</h2>
+  
+  {/* Категория 1: Диагностика */}
+  <div className={styles.serviceCategory}>
+    <h3 className={styles.categoryTitle}>
+      <span className={styles.categoryIcon}>📊</span>
+      Диагностические работы
+    </h3>
+    <div className={styles.cardsWrapper}>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔍</div>
+        <h4 className={styles.compactCardTitle}>Компьютерная диагностика</h4>
+        <p className={styles.compactCardDescription}>Чтение ошибок, анализ параметров</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>📏</div>
+        <h4 className={styles.compactCardTitle}>Проверка обратного слива</h4>
+        <p className={styles.compactCardDescription}>Измерение слива топлива</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔬</div>
+        <h4 className={styles.compactCardTitle}>Проверка герметичности</h4>
+        <p className={styles.compactCardDescription}>Рампы и регулятора давления</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>⛽</div>
+        <h4 className={styles.compactCardTitle}>Проверка давления топлива</h4>
+        <p className={styles.compactCardDescription}>Производительность насоса</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>⚡</div>
+        <h4 className={styles.compactCardTitle}>Диагностика электроцепей</h4>
+        <p className={styles.compactCardDescription}>Форсунок, клапанов, датчиков</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔄</div>
+        <h4 className={styles.compactCardTitle}>Калибровка форсунок</h4>
+        <p className={styles.compactCardDescription}>Коррекционные коды, адаптация</p>
+      </div>
+    </div>
+  </div>
 
-        <div className={styles.cardsGrid}>
-          {servicesData.map((service, index) => (
-            <div key={index} className={styles.serviceCard}>
-              <h3 className={styles.cardTitle}>{service.title}</h3>
-              <p className={styles.cardDescription}>{service.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+  {/* Категория 2: Слесарные работы */}
+  <div className={styles.serviceCategory}>
+    <h3 className={styles.categoryTitle}>
+      <span className={styles.categoryIcon}>⚙️</span>
+      Слесарно-механические работы
+    </h3>
+    <div className={styles.cardsWrapper}>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔧</div>
+        <h4 className={styles.compactCardTitle}>Снятие/установка форсунок</h4>
+        <p className={styles.compactCardDescription}>Демонтаж, чистка, фрезеровка</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🛠️</div>
+        <h4 className={styles.compactCardTitle}>Ремонт ТНВД</h4>
+        <p className={styles.compactCardDescription}>Насосы любой сложности</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🧹</div>
+        <h4 className={styles.compactCardTitle}>Замена топливного фильтра</h4>
+        <p className={styles.compactCardDescription}>Тонкой и грубой очистки</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔥</div>
+        <h4 className={styles.compactCardTitle}>Замена свечей накала</h4>
+        <p className={styles.compactCardDescription}>Без повреждения ГБЦ</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🌰</div>
+        <h4 className={styles.compactCardTitle}>Чистка впускных каналов</h4>
+        <p className={styles.compactCardDescription}>Скорлупой грецкого ореха</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>⛽</div>
+        <h4 className={styles.compactCardTitle}>Работы с топливным баком</h4>
+        <p className={styles.compactCardDescription}>Снятие, чистка, замена</p>
+      </div>
+    </div>
+  </div>
 
+  {/* Категория 3: Дополнительные услуги */}
+  <div className={styles.serviceCategory}>
+    <h3 className={styles.categoryTitle}>
+      <span className={styles.categoryIcon}>🛠️</span>
+      Дополнительные услуги
+    </h3>
+    <div className={styles.cardsWrapper}>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>💨</div>
+        <h4 className={styles.compactCardTitle}>Ремонт турбин</h4>
+        <p className={styles.compactCardDescription}>Диагностика, снятие, установка</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>➕</div>
+        <h4 className={styles.compactCardTitle}>Установка доп. оборудования</h4>
+        <p className={styles.compactCardDescription}>Фильтрация, сепарация</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>📋</div>
+        <h4 className={styles.compactCardTitle}>Регламентное ТО</h4>
+        <p className={styles.compactCardDescription}>Замена фильтров, проверки</p>
+      </div>
+      <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🤝</div>
+        <h4 className={styles.compactCardTitle}>Индивидуальные работы</h4>
+        <p className={styles.compactCardDescription}>По согласованию с клиентом</p>
+      </div>
+    </div>
+  </div>
+</section>
       {/* МОДАЛЬНОЕ ОКНО С РАСШИРЕННОЙ ФОРМОЙ */}
       {isFormOpen && (
         <div className={styles.modalOverlay} onClick={closeForm}>

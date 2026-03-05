@@ -3,35 +3,49 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
-    // Получаем данные из формы
+    // Получаем данные
     const body = await request.json();
     const { name, phone, carBrand, carYear, problem } = body;
 
-    console.log('📨 Новая заявка:', { name, phone, carBrand, carYear, problem });
+    console.log('📨 API получил данные:', { name, phone, carBrand, carYear, problem });
 
     // Валидация
     if (!name || !phone || !carBrand || !carYear) {
+      console.log('❌ Ошибка валидации: не все поля заполнены');
       return NextResponse.json(
         { error: 'Заполните все обязательные поля' },
         { status: 400 }
       );
     }
 
-    // Настройка транспорта (данные из .env.local)
+    // Проверяем наличие переменных окружения
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+      console.error('❌ Отсутствуют переменные окружения SMTP');
+      return NextResponse.json(
+        { error: 'Ошибка конфигурации сервера' },
+        { status: 500 }
+      );
+    }
+
+    // Настройка транспорта
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true, // true для 465, false для других портов
+      port: Number(process.env.SMTP_PORT) || 465,
+      secure: true,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
     });
 
+    // Проверяем соединение
+    await transporter.verify();
+    console.log('✅ Соединение с SMTP установлено');
+
     // Письмо
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: process.env.SMTP_USER, // отправляем себе
+      to: process.env.SMTP_USER, // Отправляем себе
       subject: '🚗 Новая заявка с сайта Common Rail СПБ',
       html: `
         <h2>Новая заявка на звонок</h2>
@@ -54,10 +68,19 @@ export async function POST(request) {
     );
 
   } catch (error) {
-    console.error('❌ Ошибка:', error);
+    console.error('❌ Ошибка в API:', error);
+    
+    // Определяем тип ошибки
+    let errorMessage = 'Ошибка при отправке';
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Ошибка авторизации на почтовом сервере';
+    } else if (error.code === 'ESOCKET') {
+      errorMessage = 'Не удалось подключиться к почтовому серверу';
+    }
+
     return NextResponse.json(
-      { error: 'Ошибка при отправке' },
+      { error: errorMessage, details: error.message },
       { status: 500 }
     );
   }
-} 
+}
