@@ -604,3 +604,15 @@
     justify-content: center;
   }
 }
+.compactCardIcon {
+  font-size: 36px;
+  margin-bottom: 5px;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: filter 0.3s ease;
+}
+
+.compactCard:hover .compactCardIcon {
+  filter: grayscale(0%);
+  opacity: 1;
+}

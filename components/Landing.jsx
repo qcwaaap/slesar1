@@ -237,34 +237,34 @@ const handleSubmitForm = async (e) => {
     </h3>
     <div className={styles.cardsWrapper}>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🔍</div>
+        <div className={styles.compactCardIcon}>💻</div>
         <h4 className={styles.compactCardTitle}>Компьютерная диагностика</h4>
-        <p className={styles.compactCardDescription}>Чтение ошибок, анализ параметров</p>
+        <p className={styles.compactCardDescription}>Чтение ошибок, анализ фактических параметров работы (скважности управляющего сигнала регуляторов, дозировочных клапанов, поцилиндровой коррекции, показателей датчиков коленчатого и распределительного валов, датчиков детонации, ДМРВ, датчиков давления и т.д.)</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>📏</div>
-        <h4 className={styles.compactCardTitle}>Проверка обратного слива</h4>
-        <p className={styles.compactCardDescription}>Измерение слива топлива</p>
+        <div className={styles.compactCardIcon}>🧪</div>
+        <h4 className={styles.compactCardTitle}>Измерение слива топлива</h4>
+        <p className={styles.compactCardDescription}>Проверка относительной величины обратного слива форсунок</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🔬</div>
+        <div className={styles.compactCardIcon}>🔍</div>
         <h4 className={styles.compactCardTitle}>Проверка герметичности</h4>
-        <p className={styles.compactCardDescription}>Рампы и регулятора давления</p>
+        <p className={styles.compactCardDescription}>Проверка герметичности топливной рампы и регулятора давления на автомобиле</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>⛽</div>
-        <h4 className={styles.compactCardTitle}>Проверка давления топлива</h4>
-        <p className={styles.compactCardDescription}>Производительность насоса</p>
+        <h4 className={styles.compactCardTitle}>Производительность насоса</h4>
+        <p className={styles.compactCardDescription}>Проверка герметичности контура низкого давления топлива</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>⚡</div>
         <h4 className={styles.compactCardTitle}>Диагностика электроцепей</h4>
-        <p className={styles.compactCardDescription}>Форсунок, клапанов, датчиков</p>
+        <p className={styles.compactCardDescription}>Проверка электроцепей форсунок, клапанов, датчиков и иных узлов топливной системы</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🔄</div>
+        <div className={styles.compactCardIcon}>⚙️</div>
         <h4 className={styles.compactCardTitle}>Калибровка форсунок</h4>
-        <p className={styles.compactCardDescription}>Коррекционные коды, адаптация</p>
+        <p className={styles.compactCardDescription}>Внесение коррекционных кодов форсунок в блок управления двигателем, сброс топливных адаптаций, обучение малому впрыску (адаптация микровпрыска), обучение ТНВД</p>
       </div>
     </div>
   </div>
@@ -279,15 +279,15 @@ const handleSubmitForm = async (e) => {
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🔧</div>
         <h4 className={styles.compactCardTitle}>Снятие/установка форсунок</h4>
-        <p className={styles.compactCardDescription}>Демонтаж, чистка, фрезеровка</p>
+        <p className={styles.compactCardDescription}>Демонтаж/монтаж, чистка и фрезеровка посадочных колодцев топливных форсунок</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🛠️</div>
-        <h4 className={styles.compactCardTitle}>Ремонт ТНВД</h4>
+        <div className={styles.compactCardIcon}>⚙️</div>
+        <h4 className={styles.compactCardTitle}>Снятие и установка ТНВД</h4>
         <p className={styles.compactCardDescription}>Насосы любой сложности</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🧹</div>
+        <div className={styles.compactCardIcon}>🧽</div>
         <h4 className={styles.compactCardTitle}>Замена топливного фильтра</h4>
         <p className={styles.compactCardDescription}>Тонкой и грубой очистки</p>
       </div>
@@ -297,12 +297,12 @@ const handleSubmitForm = async (e) => {
         <p className={styles.compactCardDescription}>Без повреждения ГБЦ</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🌰</div>
-        <h4 className={styles.compactCardTitle}>Чистка впускных каналов</h4>
+        <div className={styles.compactCardIcon}>🌀</div>
+        <h4 className={styles.compactCardTitle}>Чистка впускных каналов ГБЦ</h4>
         <p className={styles.compactCardDescription}>Скорлупой грецкого ореха</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>⛽</div>
+        <div className={styles.compactCardIcon}>🛢️</div>
         <h4 className={styles.compactCardTitle}>Работы с топливным баком</h4>
         <p className={styles.compactCardDescription}>Снятие, чистка, замена</p>
       </div>
@@ -328,13 +328,13 @@ const handleSubmitForm = async (e) => {
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>📋</div>
-        <h4 className={styles.compactCardTitle}>Регламентное ТО</h4>
-        <p className={styles.compactCardDescription}>Замена фильтров, проверки</p>
+        <h4 className={styles.compactCardTitle}>Работы по регламентному ТО</h4>
+        <p className={styles.compactCardDescription}>Замена воздушного фильтра, замена фильтра системы вентиляции и отопления салона и прочее при выполнении работ с топливной системой</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🤝</div>
-        <h4 className={styles.compactCardTitle}>Индивидуальные работы</h4>
-        <p className={styles.compactCardDescription}>По согласованию с клиентом</p>
+        <h4 className={styles.compactCardTitle}>Иные слесарные работы</h4>
+        <p className={styles.compactCardDescription}>По индивидуальному согласованию</p>
       </div>
     </div>
   </div>
