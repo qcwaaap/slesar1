@@ -1,9 +1,8 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
     unoptimized: true,
   },
-  // Добавьте это для Netlify
   trailingSlash: true,
 }
 
