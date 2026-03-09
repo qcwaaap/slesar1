@@ -6,8 +6,6 @@ import styles from "../styles/Landing.module.css";
 
 const Landing = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  
-  // Состояние для формы
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -16,10 +14,9 @@ const Landing = () => {
     problem: ''
   });
   
-  const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success, error
+  const [formStatus, setFormStatus] = useState('idle'); 
   const [formError, setFormError] = useState('');
 
-  // Валидация формы
   const validateForm = () => {
     if (!formData.name.trim()) {
       setFormError('Введите имя');
@@ -51,7 +48,6 @@ const Landing = () => {
     return true;
   };
 
-  // Отправка формы
 // Отправка формы
 const handleSubmitForm = async (e) => {
   e.preventDefault();
@@ -72,20 +68,17 @@ const handleSubmitForm = async (e) => {
       body: JSON.stringify(formData),
     });
 
-    // Логируем статус ответа
     console.log('📥 Статус ответа:', response.status);
     
     const data = await response.json();
     console.log('📦 Данные ответа:', data);
 
     if (!response.ok) {
-      // Показываем конкретную ошибку от сервера
       throw new Error(data.error || `Ошибка ${response.status}: ${response.statusText}`);
     }
 
     console.log('✅ Успешно отправлено:', data);
     
-    // Очищаем форму
     setFormData({
       name: '',
       phone: '',
@@ -95,7 +88,6 @@ const handleSubmitForm = async (e) => {
     });
     setFormStatus('success');
 
-    // Через 3 секунды закрываем модалку
     setTimeout(() => {
       setFormStatus('idle');
       setIsFormOpen(false);
@@ -225,11 +217,10 @@ const handleSubmitForm = async (e) => {
         </div>
       </section>
 
-{/* БЛОК НАШИ УСЛУГИ (КОМПАКТНЫЕ КАРТОЧКИ) */}
 <section className={styles.servicesFullSection}>
   <h2 className={styles.servicesFullTitle}>НАШИ УСЛУГИ</h2>
   
-  {/* Категория 1: Диагностика */}
+  {/* категория 1: диагностика */}
   <div className={styles.serviceCategory}>
     <h3 className={styles.categoryTitle}>
       <span className={styles.categoryIcon}>📊</span>
@@ -269,7 +260,7 @@ const handleSubmitForm = async (e) => {
     </div>
   </div>
 
-  {/* Категория 2: Слесарные работы */}
+  {/* категория 2: слесарные работы */}
   <div className={styles.serviceCategory}>
     <h3 className={styles.categoryTitle}>
       <span className={styles.categoryIcon}>⚙️</span>
@@ -309,7 +300,7 @@ const handleSubmitForm = async (e) => {
     </div>
   </div>
 
-  {/* Категория 3: Дополнительные услуги */}
+  {/* категория 3: дополнительные услуги */}
   <div className={styles.serviceCategory}>
     <h3 className={styles.categoryTitle}>
       <span className={styles.categoryIcon}>🛠️</span>
@@ -339,14 +330,12 @@ const handleSubmitForm = async (e) => {
     </div>
   </div>
 </section>
-      {/* МОДАЛЬНОЕ ОКНО С РАСШИРЕННОЙ ФОРМОЙ */}
       {isFormOpen && (
         <div className={styles.modalOverlay} onClick={closeForm}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeButton} onClick={closeForm}>✕</button>
             
             {formStatus === 'success' ? (
-              // Состояние успеха
               <div className={styles.successState}>
                 <h3 className={styles.modalTitle}>✓ Спасибо за обращение!</h3>
                 <p className={styles.successMessage}>
@@ -354,7 +343,6 @@ const handleSubmitForm = async (e) => {
                 </p>
               </div>
             ) : (
-              // Форма
               <>
                 <h3 className={styles.modalTitle}>Заказать звонок</h3>
                 <p className={styles.modalSubtitle}>
@@ -368,7 +356,6 @@ const handleSubmitForm = async (e) => {
                 )}
 
                 <form onSubmit={handleSubmitForm} className={styles.callbackForm}>
-                  {/* Имя */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
                       Ваше имя <span className={styles.required}>*</span>
@@ -385,7 +372,6 @@ const handleSubmitForm = async (e) => {
                     />
                   </div>
 
-                  {/* Телефон */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
                       Телефон <span className={styles.required}>*</span>
@@ -402,7 +388,6 @@ const handleSubmitForm = async (e) => {
                     />
                   </div>
 
-                  {/* Марка авто */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
                       Марка автомобиля <span className={styles.required}>*</span>
@@ -419,7 +404,6 @@ const handleSubmitForm = async (e) => {
                     />
                   </div>
 
-                  {/* Год выпуска */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
                       Год выпуска <span className={styles.required}>*</span>
@@ -438,7 +422,6 @@ const handleSubmitForm = async (e) => {
                     />
                   </div>
 
-                  {/* Суть проблемы */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
                       Опишите проблему
