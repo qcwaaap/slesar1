@@ -1,12 +1,10 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, 
-    formats: ['image/avif', 'image/webp'], 
+    unoptimized: true,
   },
-  swcMinify: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
+  // Добавьте это для Netlify
+  trailingSlash: true,
 }
 
 module.exports = nextConfig
