@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+const nextConfig = {
+  images: {
+    unoptimized: true, 
+    formats: ['image/avif', 'image/webp'], 
+  },
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig

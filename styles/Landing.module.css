@@ -1,3 +1,12 @@
+@media print {
+  .callbackButton, .modalOverlay {
+    display: none;
+  }
+}
+.heroSection {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 425px;
+}
 .container {
   max-width: 100%;
   min-width: 320px;
