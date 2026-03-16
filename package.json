@@ -6,7 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:quick": "bash ./scripts/dev.sh",
+    "start:quick": "bash ./scripts/start.sh",
+    "logs": "bash ./scripts/logs.sh all",
+    "logs:backend": "bash ./scripts/logs.sh backend",
+    "logs:frontend": "bash ./scripts/logs.sh frontend",
+    "deploy:rsync": "bash ./scripts/deploy-rsync.sh",
+    "deploy:server": "bash ./scripts/deploy.sh server",
+    "deploy:netlify": "bash ./scripts/deploy.sh netlify",
+    "deploy:vercel": "bash ./scripts/deploy.sh vercel"
   },
   "dependencies": {
     "@types/nodemailer": "^7.0.11",

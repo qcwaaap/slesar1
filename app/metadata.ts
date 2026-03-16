@@ -1,27 +1,41 @@
-import { Metadata } from 'next'
+import type { Metadata } from "next";
+
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const siteUrl = rawSiteUrl.endsWith("/") ? rawSiteUrl.slice(0, -1) : rawSiteUrl;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'Коммон Рейл СПБ Сервис | Ремонт форсунок и ТНВД',
-    template: '%s | Коммон Рейл СПБ'
+    default: "Коммон Рейл СПБ Сервис | Ремонт форсунок и ТНВД",
+    template: "%s | Коммон Рейл СПБ",
   },
-  description: 'Слесарно-диагностический участок в Санкт-Петербурге. Ремонт форсунок Common Rail, ТНВД, диагностика дизельных автомобилей. Гарантия до 1 года.',
-  keywords: ['ремонт форсунок', 'common rail', 'тнвд', 'дизель', 'санкт-петербург', 'диагностика'],
-  authors: [{ name: 'Коммон Рейл СПБ' }],
+  description:
+    "Слесарно-диагностический участок в Санкт-Петербурге. Ремонт форсунок Common Rail, ТНВД и диагностика дизельных автомобилей с гарантией до 1 года.",
+  keywords: [
+    "ремонт форсунок спб",
+    "ремонт тнвд спб",
+    "диагностика дизельных авто",
+    "common rail сервис",
+    "слесарно-диагностический участок",
+    "коммон рейл санкт-петербург",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: 'Коммон Рейл СПБ Сервис',
-    description: 'Профессиональный ремонт топливной аппаратуры дизельных двигателей',
-    url: 'https://brilliant-biscochitos-426747.netlify.app',
-    siteName: 'Коммон Рейл СПБ',
-    images: [
-      {
-        url: '/images/og-image.jpg', // Создайте такую картинку 1200x630
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
+    title: "Коммон Рейл СПБ Сервис",
+    description:
+      "Профессиональный ремонт топливной аппаратуры дизельных двигателей в Санкт-Петербурге.",
+    url: "/",
+    siteName: "Коммон Рейл СПБ",
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Коммон Рейл СПБ Сервис",
+    description:
+      "Ремонт форсунок, ТНВД и диагностика дизельных автомобилей в Санкт-Петербурге.",
   },
   robots: {
     index: true,
@@ -29,12 +43,13 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
   verification: {
-    yandex: 'ваш_код_верификации', // Получите в Яндекс.Вебмастере
+    yandex: process.env.YANDEX_VERIFICATION,
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
-}
+};

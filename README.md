@@ -1,24 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Quick commands
+
+For faster local workflow and deployment use scripts from the `scripts` folder:
+
+```bash
+npm run dev:quick          # install deps (if needed) + run dev server
+npm run start:quick        # install deps (if needed) + build + start prod server
+npm run logs               # realtime all logs from server
+npm run logs:backend       # realtime backend/api logs
+npm run logs:frontend      # realtime frontend logs
+npm run deploy:rsync       # rsync deploy to VPS + remote restart
+npm run deploy:server      # deploy to VPS over SSH (default deploy target)
+npm run deploy:netlify     # production deploy to Netlify
+npm run deploy:vercel      # production deploy to Vercel
+```
+
+Or run scripts directly:
+
+```bash
+./scripts/dev.sh
+./scripts/start.sh
+./scripts/logs.sh
+./scripts/logs.sh backend
+./scripts/logs.sh frontend
+./scripts/deploy-rsync.sh
+./scripts/deploy.sh
+./scripts/deploy.sh server
+./scripts/deploy.sh netlify
+./scripts/deploy.sh vercel
+```
 
 ## Getting Started
 
-First, run the development server:
+Run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Learn More
 

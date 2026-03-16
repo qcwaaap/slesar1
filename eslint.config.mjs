@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated static artifacts that are committed in this repo:
+    "_next/**",
+    "_not-found/**",
+    "404/**",
+    "*.html",
+    "*.txt",
   ]),
 ]);
 
