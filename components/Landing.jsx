@@ -120,14 +120,19 @@ const handleSubmitForm = async (e) => {
       problem: ''
     });
   };
+  const scrollToFooter = () => {
+    const footer = document.getElementById('site-footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.logoArea}>
           <div className={styles.logo}>КОММОН РЕЙЛ СПБ СЕРВИС</div>
-          <div className={styles.phone}>+7 911 913 62 14
-            cr.spb4@yandex.ru 
+          <div className={styles.phone}>+7 911 913 62 14    cr.spb4@yandex.ru 
           </div>
         </div>
         <button
@@ -211,8 +216,8 @@ const handleSubmitForm = async (e) => {
           </div>
 
           <button
-            className={styles.getDiscountButton}
-            onClick={() => setIsFormOpen(true)}
+             className={styles.getDiscountButton}
+            onClick={scrollToFooter}
           >
             Куда обратиться
           </button>
@@ -234,30 +239,30 @@ const handleSubmitForm = async (e) => {
         <h4 className={styles.compactCardTitle}>Компьютерная диагностика</h4>
         <p className={styles.compactCardDescription}>Чтение ошибок, анализ фактических параметров работы (скважности управляющего сигнала регуляторов, дозировочных клапанов, поцилиндровой коррекции, показателей датчиков коленчатого и распределительного валов, датчиков детонации, ДМРВ, датчиков давления и т.д.)</p>
       </div>
-      <div className={styles.compactCard}>
+          <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🧪</div>
-        <h4 className={styles.compactCardTitle}>Измерение слива топлива</h4>
-        <p className={styles.compactCardDescription}>Проверка относительной величины обратного слива форсунок</p>
-      </div>
-      <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🔍</div>
-        <h4 className={styles.compactCardTitle}>Проверка герметичности</h4>
-        <p className={styles.compactCardDescription}>Проверка герметичности топливной рампы и регулятора давления на автомобиле</p>
+        <h4 className={styles.compactCardTitle}>Экспресс-анализ гидроплотности форсунок</h4> 
+        <p className={styles.compactCardDescription}>Проверка герметичности форсунок</p> 
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>⛽</div>
-        <h4 className={styles.compactCardTitle}>Производительность насоса</h4>
-        <p className={styles.compactCardDescription}>Проверка герметичности контура низкого давления топлива</p>
+        <h4 className={styles.compactCardTitle}>Диагностика системы низкого давления</h4>
+        <p className={styles.compactCardDescription}>Проверка герметичности контура, забор топлива с анализом содержимого топливного фильтра, проверка давления и производительности подающего насоса, замер величины разряжения в питающем контуре (для модификаций автомобилей без электрического насоса в баке)</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>⚡</div>
-        <h4 className={styles.compactCardTitle}>Диагностика электроцепей</h4>
+        <h4 className={styles.compactCardTitle}>Диагностика электропроводки</h4>
         <p className={styles.compactCardDescription}>Проверка электроцепей форсунок, клапанов, датчиков и иных узлов топливной системы</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>⚙️</div>
-        <h4 className={styles.compactCardTitle}>Калибровка форсунок</h4>
+        <div className={styles.compactCardIcon}>📝</div>
+        <h4 className={styles.compactCardTitle}>Работа с калибровочными данными</h4>
         <p className={styles.compactCardDescription}>Внесение коррекционных кодов форсунок в блок управления двигателем, сброс топливных адаптаций, обучение малому впрыску (адаптация микровпрыска), обучение ТНВД</p>
+      </div>
+            <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🌀</div> 
+        <h4 className={styles.compactCardTitle}>Проверка герметичности системы подачи воздуха</h4>
+        <p className={styles.compactCardDescription}>Опрессовка системы впуска</p>
       </div>
     </div>
   </div>
@@ -271,67 +276,94 @@ const handleSubmitForm = async (e) => {
     <div className={styles.cardsWrapper}>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🔧</div>
-        <h4 className={styles.compactCardTitle}>Снятие/установка форсунок</h4>
+        <h4 className={styles.compactCardTitle}>Снятие и установка форсунок</h4>
         <p className={styles.compactCardDescription}>Демонтаж/монтаж, чистка и фрезеровка посадочных колодцев топливных форсунок</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>⚙️</div>
         <h4 className={styles.compactCardTitle}>Снятие и установка ТНВД</h4>
-        <p className={styles.compactCardDescription}>Насосы любой сложности</p>
+        <p className={styles.compactCardDescription}>Демонтаж насосов CR любой сложности</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🧽</div>
         <h4 className={styles.compactCardTitle}>Замена топливного фильтра</h4>
-        <p className={styles.compactCardDescription}>Тонкой и грубой очистки</p>
+        <p className={styles.compactCardDescription}>Тонкой и грубой очистки. Установка систем дополнительной фильтрации и сепарации</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🔥</div>
         <h4 className={styles.compactCardTitle}>Замена свечей накала</h4>
-        <p className={styles.compactCardDescription}>Без повреждения ГБЦ</p>
+        <p className={styles.compactCardDescription}>С последующей проверкой работы системы предпускового подогрева</p>
       </div>
       <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🌀</div>
+        <div className={styles.compactCardIcon}>🧹</div>
         <h4 className={styles.compactCardTitle}>Чистка впускных каналов ГБЦ</h4>
-        <p className={styles.compactCardDescription}>Скорлупой грецкого ореха</p>
+        <p className={styles.compactCardDescription}>Мягкоабразивная очистка скорлупой грецкого ореха</p>
       </div>
       <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>🛢️</div>
         <h4 className={styles.compactCardTitle}>Работы с топливным баком</h4>
-        <p className={styles.compactCardDescription}>Снятие, чистка, замена</p>
+        <p className={styles.compactCardDescription}>Замена, снятие и установка, механическая чистка и мойка</p>
+      </div>
+        <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>💨</div>  
+        <h4 className={styles.compactCardTitle}>Турбины</h4>
+        <p className={styles.compactCardDescription}>Замена, снятие и установка</p>
+      </div>
+            <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>📋</div> 
+        <h4 className={styles.compactCardTitle}>Работы по регламентному ТО</h4>
+        <p className={styles.compactCardDescription}>Замена воздушного фильтра, замена фильтра системы вентиляции и отопления салона и прочее</p>
       </div>
     </div>
   </div>
-
-  {/* категория 3: дополнительные услуги */}
+  {/* категория 3: специализированный ремонт */}
   <div className={styles.serviceCategory}>
     <h3 className={styles.categoryTitle}>
-      <span className={styles.categoryIcon}>🛠️</span>
-      Дополнительные услуги
+      <span className={styles.categoryIcon}>🔧</span>
+      Специализированный ремонт
     </h3>
     <div className={styles.cardsWrapper}>
       <div className={styles.compactCard}>
+        <div className={styles.compactCardIcon}>🔧</div>
+        <h4 className={styles.compactCardTitle}>
+          <a href="https://crdizel.com" target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+            РЕМОНТ ТОПЛИВНЫХ ФОРСУНОК И ТНВД СИСТЕМ COMMON RAIL
+          </a>
+        </h4>
+        <p className={styles.compactCardDescription}></p>
+      </div>
+      <div className={styles.compactCard}>
         <div className={styles.compactCardIcon}>💨</div>
-        <h4 className={styles.compactCardTitle}>Ремонт турбин</h4>
-        <p className={styles.compactCardDescription}>Диагностика, снятие, установка</p>
-      </div>
-      <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>➕</div>
-        <h4 className={styles.compactCardTitle}>Установка доп. оборудования</h4>
-        <p className={styles.compactCardDescription}>Фильтрация, сепарация</p>
-      </div>
-      <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>📋</div>
-        <h4 className={styles.compactCardTitle}>Работы по регламентному ТО</h4>
-        <p className={styles.compactCardDescription}>Замена воздушного фильтра, замена фильтра системы вентиляции и отопления салона и прочее при выполнении работ с топливной системой</p>
-      </div>
-      <div className={styles.compactCard}>
-        <div className={styles.compactCardIcon}>🤝</div>
-        <h4 className={styles.compactCardTitle}>Иные слесарные работы</h4>
-        <p className={styles.compactCardDescription}>По индивидуальному согласованию</p>
+        <h4 className={styles.compactCardTitle}>
+          <a href="https://crdizel.com" target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+            РЕМОНТ ТУРБИН
+          </a>
+        </h4>
+        <p className={styles.compactCardDescription}></p>
       </div>
     </div>
   </div>
 </section>
+      {/* футер с контактами */}
+      <footer id="site-footer" className={styles.footer}>
+        <div className={styles.footerContent}>
+          <h3 className={styles.footerTitle}>КОНТАКТЫ</h3>
+          <div className={styles.contactInfo}>
+            <div className={styles.contactItem}>
+              <span className={styles.contactIcon}>📍</span>
+              <span>г. Санкт-Петербург, пер. Уманский д.88Б</span>
+            </div>
+            <div className={styles.contactItem}>
+              <span className={styles.contactIcon}>📞</span>
+              <a href="tel:+79119136214" className={styles.contactLink}>+7 911 913 62 14</a>
+            </div>
+            <div className={styles.contactItem}>
+              <span className={styles.contactIcon}>✉️</span>
+              <a href="mailto:cr.spb4@yandex.ru" className={styles.contactLink}>cr.spb4@yandex.ru</a>
+            </div>
+          </div>
+        </div>
+      </footer>
       {isFormOpen && (
         <div className={styles.modalOverlay} onClick={closeForm}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
