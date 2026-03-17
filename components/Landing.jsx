@@ -126,7 +126,9 @@ const handleSubmitForm = async (e) => {
       <header className={styles.header}>
         <div className={styles.logoArea}>
           <div className={styles.logo}>КОММОН РЕЙЛ СПБ СЕРВИС</div>
-          <div className={styles.phone}>8 (800) 302-53-72</div>
+          <div className={styles.phone}>+7 911 913 62 14
+            cr.spb4@yandex.ru 
+          </div>
         </div>
         <button
           className={styles.callbackButton}
@@ -155,10 +157,10 @@ const handleSubmitForm = async (e) => {
             </h1>
             <div className={styles.heroSubtitle}>в Санкт-Петербурге</div>
             <ul className={styles.benefitsList}>
-              <li>Быстрое и качественное обслуживание.</li>
-              <li>Профессиональная диагностика.</li>
-              <li>Специалисты премиум класса.</li>
-              <li>Работа любой сложности.</li>
+              <li>Быстрое и качественное обслуживание</li>
+              <li>Профессиональная диагностика</li>
+              <li>Специалисты премиум класса</li>
+              <li>Работа любой сложности</li>
               <li>Гарантия до одного года</li>
             </ul>
           </div>
@@ -212,7 +214,7 @@ const handleSubmitForm = async (e) => {
             className={styles.getDiscountButton}
             onClick={() => setIsFormOpen(true)}
           >
-            Получить скидку
+            Куда обратиться
           </button>
         </div>
       </section>
