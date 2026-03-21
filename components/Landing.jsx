@@ -187,7 +187,7 @@ const handleSubmitForm = async (e) => {
       <section className={styles.discountSection}>
         <div className={styles.discountBackground}>
           <Image
-            src="/images/discount-bg.png" 
+            src="/images/discount-bg1.png" 
             alt="фон акций"
             fill
             style={{ objectFit: "cover", opacity: 100 }}
