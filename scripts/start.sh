@@ -3,10 +3,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-if [ ! -d "node_modules" ]; then
+[[ -d "node_modules" ]] || {
   echo "Installing dependencies..."
   npm install
-fi
+}
 
 echo "Building production bundle..."
 npm run build

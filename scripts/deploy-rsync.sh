@@ -3,29 +3,28 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-if ! command -v sshpass >/dev/null 2>&1; then
+command -v sshpass >/dev/null 2>&1 || {
   echo "sshpass is required. Install it and retry:"
   echo "sudo apt-get update && sudo apt-get install -y sshpass"
   exit 1
-fi
-
-if ! command -v rsync >/dev/null 2>&1; then
+}
+command -v rsync >/dev/null 2>&1 || {
   echo "rsync is required. Install it and retry:"
   echo "sudo apt-get update && sudo apt-get install -y rsync"
   exit 1
-fi
+}
 
-DEPLOY_HOST="${DEPLOY_HOST:-185.96.80.253}"
-DEPLOY_USER="${DEPLOY_USER:-root}"
-DEPLOY_PASSWORD="${DEPLOY_PASSWORD:-5fvXnL3A8Lvy}"
+DEPLOY_HOST="${DEPLOY_HOST:-37.140.192.36}"
+DEPLOY_USER="${DEPLOY_USER:-u2908498}"
+DEPLOY_PASSWORD="${DEPLOY_PASSWORD:-hITl1W0xY8o3Aj9V}"
 DEPLOY_PORT="${DEPLOY_PORT:-22}"
-DEPLOY_PATH="${DEPLOY_PATH:-/opt/slesar1}"
+DEPLOY_PATH="${DEPLOY_PATH:-/var/www/u2908498/data/www/cardizel.com}"
 APP_PORT="${APP_PORT:-3000}"
 
-if [ ! -d "node_modules" ]; then
+[[ -d "node_modules" ]] || {
   echo "Installing local dependencies..."
   npm install
-fi
+}
 
 echo "Building project locally..."
 npm run build
@@ -40,32 +39,21 @@ sshpass -p "$DEPLOY_PASSWORD" rsync -az --delete --info=progress2 \
   --exclude ".git" \
   --exclude "node_modules" \
   --exclude ".next/cache" \
-  --exclude "out" \
   ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
 
-echo "Installing dependencies and restarting app on server..."
+echo "Copying static export (out/) into domain root..."
 sshpass -p "$DEPLOY_PASSWORD" ssh -p "$DEPLOY_PORT" -o StrictHostKeyChecking=no \
-  "${DEPLOY_USER}@${DEPLOY_HOST}" "DEPLOY_PATH='$DEPLOY_PATH' APP_PORT='$APP_PORT' bash -s" <<'EOF'
+  "${DEPLOY_USER}@${DEPLOY_HOST}" "DEPLOY_PATH='$DEPLOY_PATH' bash -s" <<'EOF'
   set -euo pipefail
-  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+  cd "$DEPLOY_PATH"
 
-  if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
-    echo "Node.js/npm not found. Installing Node.js 20..."
-    apt-get update
-    apt-get install -y curl ca-certificates gnupg
-    install -m 0755 -d /etc/apt/keyrings
-    if [ ! -f /etc/apt/keyrings/nodesource.gpg ]; then
-      curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    fi
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
-    apt-get update
-    apt-get install -y nodejs
+  if [ -d "out" ]; then
+    # Hosting provider expects index.html + _next/ directly in the domain root.
+    rm -rf ./index.html ./404.html ./_next
+    cp -R ./out/. ./
+  else
+    echo "WARN: out/ directory not found. Did build generate static export?"
   fi
 
-  cd "$DEPLOY_PATH"
-  npm install --omit=dev
-  pkill -f "next start -p $APP_PORT" || true
-  nohup npm run start -- -p "$APP_PORT" > app.log 2>&1 &
-  sleep 2
-  echo "Deploy complete. App running on port $APP_PORT"
+  echo "Deploy complete. Static site should be served from domain root."
 EOF

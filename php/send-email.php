@@ -1,9 +1,10 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
-require_once 'PHPMailer-master/src/PHPMailer.php';
-require_once 'PHPMailer-master/src/SMTP.php';
-require_once 'PHPMailer-master/src/Exception.php';
+// In this project PHPMailer lives under: php/PHPMailer/PHPMailer-master/...
+require_once __DIR__ . '/PHPMailer/PHPMailer-master/src/PHPMailer.php';
+require_once __DIR__ . '/PHPMailer/PHPMailer-master/src/SMTP.php';
+require_once __DIR__ . '/PHPMailer/PHPMailer-master/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -17,6 +18,7 @@ $carYear = trim($data['carYear'] ?? '');
 $problem = trim($data['problem'] ?? '');
 
 if (!$name || !$phone || !$carBrand || !$carYear) {
+    http_response_code(400);
     echo json_encode(['error' => 'Заполните все обязательные поля']);
     exit;
 }
@@ -59,6 +61,7 @@ try {
     ]);
     
 } catch (Exception $e) {
+    http_response_code(500);
     echo json_encode([
         'error' => 'Ошибка при отправке',
         'details' => $mail->ErrorInfo

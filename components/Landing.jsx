@@ -60,7 +60,7 @@ const handleSubmitForm = async (e) => {
   try {
     console.log('📤 Отправка данных:', formData);
 
-  const response = await fetch('/php/send-email.php', {
+  const response = await fetch('/send-email.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData),
