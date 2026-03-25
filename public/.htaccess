@@ -1,0 +1,3 @@
+# Минимальная конфигурация для статического экспорта Next.js на Apache (REG.RU и др.)
+AddDefaultCharset UTF-8
+DirectoryIndex index.html index.htm

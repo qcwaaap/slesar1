@@ -3,10 +3,7 @@
     display: none;
   }
 }
-.heroSection {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 425px;
-}
+
 .container {
   max-width: 100%;
   min-width: 320px;
@@ -22,6 +19,30 @@
   align-items: center;
   padding: 20px 40px;
   background-color: #fff9f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* мягкая тень без резкой границы */
+  box-shadow:
+    0 12px 32px -8px rgba(0, 0, 0, 0.06),
+    0 4px 12px -4px rgba(193, 124, 90, 0.08);
+}
+
+/* плавное «затухание» фона под нижним краем шапки */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  height: 20px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 249, 240, 0.75) 0%,
+    rgba(255, 249, 240, 0.2) 55%,
+    transparent 100%
+  );
 }
 
 .logoArea {
@@ -37,6 +58,13 @@
   font-family: 'Inter', sans-serif;
 }
 
+.headerContactLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
 .phone {
   font-weight: 700;
   font-size: 18px;
@@ -45,8 +73,23 @@
   text-decoration: none;
 }
 
+.headerEmail {
+  font-weight: 700;
+  font-size: 18px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+
+.phone:hover,
+.headerEmail:hover {
+  opacity: 0.85;
+}
+
 .callbackButton {
+  box-sizing: border-box;
   width: 380px;
+  max-width: 100%;
   height: 75px;
   background-color: #c17c5a;
   color: #ffffff;
@@ -78,6 +121,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 .heroContent {
@@ -169,6 +213,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 .discountContent {
@@ -392,6 +437,10 @@
     text-align: center;
   }
 
+  .headerContactLine {
+    justify-content: center;
+  }
+
   .callbackButton {
     width: 100%;
     max-width: 380px;
@@ -518,23 +567,49 @@
 
 /* базовая карточка с фиксированной шириной */
 .compactCard {
+  box-sizing: border-box;
   width: 260px;
   background-color: #ffffff;
   border-radius: 12px;
   padding: 20px 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
   border: 1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transform-origin: center center;
 }
 
 .compactCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(193, 124, 90, 0.12);
+  z-index: 20;
+  transform: scale(1.08) translateY(-4px);
+  box-shadow:
+    0 16px 36px rgba(193, 124, 90, 0.22),
+    0 8px 16px rgba(0, 0, 0, 0.08);
   border-color: #c17c5a;
+}
+
+@media (hover: none) {
+  .compactCard:hover {
+    transform: none;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #f0f0f0;
+  }
+}
+
+/* на узком окне сильный scale режет края — чуть слабее */
+@media (max-width: 640px) and (hover: hover) {
+  .compactCard:hover {
+    transform: scale(1.05) translateY(-3px);
+  }
 }
 
 .compactCardIcon {
@@ -617,4 +692,103 @@
   font-size: 36px;
   margin-bottom: 5px;
   transition: filter 0.3s ease;
+}
+/* Font Awesome иконки */
+.compactCardIcon i,
+.compactCard i,
+.categoryTitle i,
+.contactItem i {
+  font-size: 28px;
+  color: #c17c5a;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.compactCard:hover i {
+  color: #4A5B6E;
+}
+
+.contactItem i {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-right: 10px;
+  width: 24px;
+  text-align: center;
+}
+
+/* футер */
+.footer {
+  background-color: #fff9f0;
+  padding: 60px 40px;
+}
+
+/* Как у блока услуг: без ограничения ширины, чтобы левый край совпадал с первой карточкой (padding секции) */
+.footerContent {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* Заголовок как у категорий услуг; выравнивание слева (в футере не как у карточек по центру на tablet) */
+.footer .footerContactsTitle {
+  justify-content: flex-start;
+  text-align: left;
+  margin-top: 0;
+}
+
+.footer .footerContactsTitle i {
+  margin-bottom: 0;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px 36px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4A5B6E;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.contactIcon {
+  color: #c17c5a;
+}
+
+.contactLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  /* как у .servicesFullSection по горизонтали, чтобы край совпадал с карточками */
+  .footer {
+    padding: 50px 40px;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .contactInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .contactItem {
+    font-size: 16px;
+  }
 }

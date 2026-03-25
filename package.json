@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:deploy": "next build && node scripts/verify-out.mjs",
+    "zip:out": "node scripts/zip-out.mjs",
     "start": "next start",
     "lint": "eslint",
     "dev:quick": "bash ./scripts/dev.sh",
@@ -15,12 +17,12 @@
     "deploy:rsync": "bash ./scripts/deploy-rsync.sh",
     "deploy:server": "bash ./scripts/deploy.sh server",
     "deploy:netlify": "bash ./scripts/deploy.sh netlify",
-    "deploy:vercel": "bash ./scripts/deploy.sh vercel"
+    "deploy:vercel": "bash ./scripts/deploy.sh vercel",
+    "form-server": "python backend/send_form_server.py"
   },
   "dependencies": {
-    "@types/nodemailer": "^7.0.11",
+    "@fortawesome/fontawesome-free": "^7.2.0",
     "next": "16.1.6",
-    "nodemailer": "^8.0.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
